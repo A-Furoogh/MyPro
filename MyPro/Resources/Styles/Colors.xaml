@@ -41,4 +41,9 @@
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
 
+    <Color x:Key="MyYello">#f4f56d</Color>
+    <Color x:Key="MyCyan">#72e7e2</Color>
+    <Color x:Key="MySkyBlue">#59b3d4</Color>
+    <Color x:Key="MyTeal">#428ca0</Color>
+
 </ResourceDictionary>

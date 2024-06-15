@@ -2,20 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyPro.Presentation.UserListPage"
-             Title="UserListPage">
+             Title="Benutzerliste"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
 
-    <StackLayout>
-        <Label Text="User List"
-           VerticalOptions="CenterAndExpand" 
-           HorizontalOptions="CenterAndExpand" />
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="0,20,0,10"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
+    </ContentPage.Resources>
 
-        <ListView x:Name="UserListView">
+    <StackLayout Padding="20">
+        <Label Text="Benutzerliste" FontAttributes="Bold" />
+
+        <ListView x:Name="UserListView"
+                  ItemSelected="OnUserSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Email}" />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Email}" FontSize="Small" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-    
+
 </ContentPage>

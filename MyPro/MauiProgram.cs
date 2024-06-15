@@ -49,6 +49,7 @@ namespace MyPro
             services.AddTransient<UserListPage>();
             services.AddTransient<LoginPage>();
             services.AddTransient<SignupPage>();
+            services.AddTransient<ProjectPage>();
         }
     }
 }

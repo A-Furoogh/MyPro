@@ -20,4 +20,8 @@ public partial class UserListPage : ContentPage
         var users = await userService.GetAllUsersAsync();
         UserListView.ItemsSource = users;
     }
+
+    private async void OnUserSelected(object sender, EventArgs e)
+    {
+    }
 }

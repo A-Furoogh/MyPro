@@ -9,6 +9,11 @@
                 <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary>
+                <Color x:Key="PageBackgroundColor">#f8f8f8</Color>
+                <Color x:Key="MyTeal">#00796B</Color>
+                <Color x:Key="SaveButtonColor">#4CAF50</Color>
+            </ResourceDictionary>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

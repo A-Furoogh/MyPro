@@ -56,6 +56,15 @@ public partial class AddProjectPage : ContentPage
         var authenticationService = _serviceProvider.GetRequiredService<IAuthenticationService>();
         _userId = authenticationService.GetUserIdAsync();
     }
+    private async void OnAddMemberClicked(object sender, EventArgs e)
+    {
+        var userListPage = _serviceProvider.GetRequiredService<UserListPage>();
+        await Navigation.PushAsync(userListPage);
+    }
 
-    
+    private async void OnMemberSelected(object sender, EventArgs e)
+    {
+    }
+
+
 }

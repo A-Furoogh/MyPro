@@ -50,7 +50,9 @@ namespace MyPro
         // Event handler stubs for navigation and other actions
         private async void OnProjectSelected(object sender, EventArgs e)
         {
-            // Navigation logic for selected project
+            // Navigate to ProjectPage
+            var projectPage = _serviceProvider.GetRequiredService<ProjectPage>();
+            await Navigation.PushAsync(projectPage);
         }
 
         private async void OnViewUsersClicked(object sender, EventArgs e)
