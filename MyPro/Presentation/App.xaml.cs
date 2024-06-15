@@ -2,11 +2,13 @@
 {
     public partial class App : Microsoft.Maui.Controls.Application
     {
-        public App()
+        private readonly IServiceProvider _serviceProvider;
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            _serviceProvider = serviceProvider;
+            MainPage = new AppShell(_serviceProvider);
         }
     }
 }

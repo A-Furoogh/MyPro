@@ -26,14 +26,25 @@ namespace MyPro.Infrastructure.Repositories
 
         public async Task<IEnumerable<Project>> GetAllProjectsByUserIdAsync(int userId)
         {
-            // Get all projects, then filter where the project's UsersIds list contains the userId
             var projects = await _firebaseClient.Child("Projects").OnceAsync<Project>();
             return projects.Select(p => p.Object).Where(p => p.UsersIds.Contains(userId));
+        }
+        public async Task<IEnumerable<Project>> GetAllProjectsAsync()
+        {
+            var projects = await _firebaseClient.Child("Projects").OnceAsync<Project>();
+            return projects.Select(p => p.Object);
         }
 
         public async Task AddProjectAsync(Project project)
         {
-            await _firebaseClient.Child("Projects").PostAsync(project);
+            try
+            {
+                await _firebaseClient.Child("Projects").PostAsync(project);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task UpdateProjectAsync(Project project)

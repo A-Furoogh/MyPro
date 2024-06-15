@@ -14,5 +14,6 @@ namespace MyPro.Application.Interfaces
         Task AddProjectAsync(Project project);
         Task UpdateProjectAsync(Project project);
         Task DeleteProjectAsync(int projectId);
+        Task<IEnumerable<Project>> GetAllProjectsAsync();
     }
 }

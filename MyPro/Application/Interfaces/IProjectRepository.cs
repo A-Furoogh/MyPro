@@ -15,5 +15,6 @@ namespace MyPro.Application.Interfaces
         Task UpdateProjectAsync(Project project);
         Task DeleteProjectAsync(int projectId);
         Task<IEnumerable<TaskItem>> GetTaskItemsOfProject();
+        Task<IEnumerable<Project>> GetAllProjectsAsync();
     }
 }

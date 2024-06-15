@@ -1,41 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyPro.MainPage">
+             x:Class="MyPro.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Gray200}">
+    
+    <Grid 
+    VerticalOptions="Fill"
+    Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid 
+        Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Image 
+            Grid.Column="0"
+            Source="mytask_logo.png" 
+            HeightRequest="80" WidthRequest="120"  
+            Aspect="AspectFit" 
+            HorizontalOptions="Start"/>
+            <Button 
+            Grid.Column="2"
+                Text="ausloggen" 
+                Clicked="OnLogoutClicked" 
+                MaximumHeightRequest="40"
+                MaximumWidthRequest="90"
+                CornerRadius="30"
+                FontSize="12"
+                BackgroundColor="{StaticResource MyTeal}"/>
+        </Grid>
+        <StackLayout
+        Grid.Row="1">
+            <Label Text="  Meine Projekte:"
+               FontSize="Large"
+               FontAttributes="Bold"
+               />
+            <Grid RowSpacing="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition Height="300"/>
+                </Grid.RowDefinitions>
+                <Border
+                StrokeShape="RoundRectangle 20">
+                    <ScrollView Orientation="Vertical" Grid.Row="0" 
+                        BackgroundColor="{StaticResource Gray400}">
+                        <CollectionView x:Name="ProjectsCollectionView"
+                            ItemsSource="{Binding Projects}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnProjectSelected">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="0" Margin="5" BackgroundColor="LightGray" CornerRadius="20">
+                                        <StackLayout Padding="10">
+                                            <Label Text="{Binding Name}" FontSize="Large" />
+                                            <Label Text="{Binding Description}" />
+                                            <HorizontalStackLayout>
+                                                <Label Text="Start Date: " />
+                                                <Label Text="{Binding StartDate}" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="End Date: " />
+                                                <Label Text="{Binding EndDate}" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="Ist erledigt: " />
+                                                <Label Text="{Binding IsCompleted}" />
+                                            </HorizontalStackLayout>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+                                            <HorizontalStackLayout>
+                                                <Label Text="Mitglieder: " />
+                                                <CollectionView x:Name="TasksCollectionView"
+                                            ItemsSource="{Binding UsersIds}"
+                                            SelectionMode="Single">
+                                                    <CollectionView.ItemsLayout>
+                                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                                    </CollectionView.ItemsLayout>
+                                                </CollectionView>
+                                            </HorizontalStackLayout>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </Border>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+                <Grid Grid.Row="1">
+                    <VerticalStackLayout>
+                        <Button Text="Neues Projekt +" 
+                            Clicked="OnAddProjectClicked"
+                            FontAttributes="Bold"
+                            MaximumWidthRequest="200"
+                            HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </Grid>
 
 </ContentPage>

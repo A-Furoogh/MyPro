@@ -41,5 +41,9 @@ namespace MyPro.Application.Services
         {
             return _projectRepository.DeleteProjectAsync(projectId);
         }
+        public Task<IEnumerable<Project>> GetAllProjectsAsync()
+        {
+            return _projectRepository.GetAllProjectsAsync();
+        }
     }
 }
